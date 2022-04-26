@@ -11,8 +11,23 @@ if typing.TYPE_CHECKING:
 
 @app.route('/')
 def index():
-    wp = WikiPage(title='FirstPage',
-                  text='This is a page')
-    print(session)
-    session.flush()
-    return f'Hello World! {wp.title}'
+    # keep adding a page to the site, simply because we can and we eventually
+    # will start hitting some scaling stuff.
+    wp = Page(
+        dict(
+            title='FirstPage',
+            text=lorem.get_paragraph(
+                count=3,
+                comma=(0, 2),
+                word_range=(4, 8),
+                sentence_range=(5, 10)
+            )
+        )
+    )
+    wp.m.save()
+    return render_template('index.html', payload=wp)
+
+@app.route('/list')
+def list_pages():
+    pages = Page.m.find().all()
+    return render_template('list.html', pages=pages)
