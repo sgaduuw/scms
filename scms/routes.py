@@ -1,3 +1,4 @@
+import datetime
 import typing
 from flask import render_template
 import lorem
@@ -16,6 +17,7 @@ def index():
     wp = Page(
         dict(
             title='FirstPage',
+            date=datetime.datetime.now(),
             text=lorem.get_paragraph(
                 count=3,
                 comma=(0, 2),
