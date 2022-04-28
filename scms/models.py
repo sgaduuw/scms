@@ -1,3 +1,5 @@
+import os
+import datetime
 from ming import Session, create_datastore
 from ming import Document, Field, schema
 #from ming.odm import MappedClass
@@ -5,7 +7,7 @@ from ming import Document, Field, schema
 #from ming.odm import ThreadLocalODMSession
 from ming.odm import Mapper
 
-session = Session(create_datastore('mongodb+srv://mongoacct01:TzT1xCaAkUs3mMUp@cms.poqcs.mongodb.net/dev?retryWrites=true&w=majority'))
+session = Session(create_datastore(os.getenv('MONGO_CONNECT')))
 class Site(Document):
     class __mongometa__:
         session = session
