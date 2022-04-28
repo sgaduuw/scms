@@ -28,8 +28,7 @@ class Page(Document):
     _id = Field(schema.ObjectId)
     title = Field(str)
     text = Field(str)
+    date = Field(datetime.datetime)
+    site = Field(schema.ObjectId)
 
 Mapper.compile_all()
-
-print(session.db)
-print(session.bind)
