@@ -1,3 +1,4 @@
+""" routes for scms app """
 import datetime
 import typing
 from flask import render_template
