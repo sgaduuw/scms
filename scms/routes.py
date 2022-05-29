@@ -1,9 +1,10 @@
 """ routes for scms app """
 import datetime
 import random
+from urllib.parse import urlparse
 
 import lorem
-from flask import render_template
+from flask import render_template, request
 
 from scms import app
 from scms.models import Page, Site, session
@@ -34,5 +35,12 @@ def index():
 @app.route('/list')
 def list_pages():
     """ function for listing all pages on all sites """
-    sites = Site.query.find()
-    return render_template('list.html', sites=sites)
+
+    req_host = urlparse(request.base_url).hostname
+    site = Site.query.find({"fqdns": req_host }).first()
+
+    if site is not None:
+        print(req_host)
+        return render_template('list.html', site=site)
+
+    return render_template('error.html', payload=req_host), 404
