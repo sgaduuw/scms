@@ -1,15 +1,13 @@
 """ routes for scms app """
 import datetime
-import typing
-from flask import render_template
+import random
+
 import lorem
+from flask import render_template
+
 from scms import app
-#from scms import models
+from scms.models import Page, Site, session
 
-from scms.models import session, Site, Page
-
-if typing.TYPE_CHECKING:
-    from ming.metadata import Manager
 
 @app.route('/')
 def index():
