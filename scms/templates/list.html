@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Lists</h1>
-
 <h2>{{ site.name }}</h2>
 <ul>
         {% for page in site.page %}
@@ -11,5 +10,4 @@
         </li>
         {% endfor %}
 </ul>
-{% endif %}
 {% endblock %}
