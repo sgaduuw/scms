@@ -17,7 +17,7 @@ class Site(MappedClass):
 
     _id = FieldProperty(schema.ObjectId)
     name = FieldProperty(schema.String)
-    # fqdns = FieldProperty(schema.Array)
+    fqdns = FieldProperty(schema.Array(str))
 
     page = RelationProperty('Page')
 
