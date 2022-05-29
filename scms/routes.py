@@ -11,18 +11,21 @@ from scms.models import Page, Site, session
 
 @app.route('/')
 def index():
+    """ function for displaying the index page """
     # keep adding a page to the site, simply because we can and we eventually
     # will start hitting some scaling stuff.
-    wp = Page(
-        dict(
-            title='FirstPage',
-            date=datetime.datetime.now(),
-            text=lorem.get_paragraph(
-                count=3,
-                comma=(0, 2),
-                word_range=(4, 8),
-                sentence_range=(5, 10)
-            )
+
+    # select one random site to insert lorem into
+    rnd_site = Site.query.find({'name': random.choice(['test01', 'test02', 'test03'])}).first()
+    new_page = Page(
+        title='FirstPage',
+        site_id=rnd_site._id,
+        date=datetime.datetime.now(),
+        text=lorem.get_paragraph(
+            count=3,
+            comma=(0, 2),
+            word_range=(4, 8),
+            sentence_range=(5, 10)
         )
     )
     wp.m.save()
