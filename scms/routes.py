@@ -28,10 +28,11 @@ def index():
             sentence_range=(5, 10)
         )
     )
-    wp.m.save()
-    return render_template('index.html', payload=wp)
+    session.flush()
+    return render_template('index.html', payload=new_page)
 
 @app.route('/list')
 def list_pages():
-    pages = Page.m.find().all()
-    return render_template('list.html', pages=pages)
+    """ function for listing all pages on all sites """
+    sites = Site.query.find()
+    return render_template('list.html', sites=sites)
