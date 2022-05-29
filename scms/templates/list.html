@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-        <h1>Pages</h1>
-        <ul>
-    {% for page in pages %}
-            <li>{{ page }}</li>
-    {% endfor %}
-        </ul>
+<h1>Lists</h1>
+<h2>Sites</h2>
+
+{% for site in sites %}
+<h3>{{ site.name }}</h3>
+<ul>
+        {% for page in site.page %}
+        <li>
+                <b>{{ page.title}}</b><br>
+                {{ page.text }}
+        </li>
+        {% endfor %}
+</ul>
+{% endfor %}
 {% endblock %}
