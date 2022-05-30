@@ -35,7 +35,7 @@ class Content(MappedClass):
     _id = FieldProperty(schema.ObjectId)
     title = FieldProperty(schema.String)
     text = FieldProperty(schema.String)
-    date = FieldProperty(schema.DateTime)
+    create_date = FieldProperty(schema.DateTime)
 
     body = FieldProperty(schema.String)
     slug = FieldProperty(schema.String)
