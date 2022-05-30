@@ -1,5 +1,5 @@
 """ routes for scms app """
-import datetime
+from datetime import datetime
 import random
 from urllib.parse import urlparse
 
@@ -21,7 +21,7 @@ def index():
     new_page = Content(
         title='FirstPage',
         site_id=rnd_site._id,
-        date=datetime.datetime.now(),
+        create_date=datetime.now(),
         body=lorem.get_paragraph(
             count=3,
             comma=(0, 2),

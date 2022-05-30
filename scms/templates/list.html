@@ -6,8 +6,8 @@
         {% for content in site.content %}
         <li>
                 <b>{{ content.title }}</b><br>
-                <b>{{ content.date }}</b><br>
-                {{ content.text }}
+                <b>{{ content.create_date }}</b><br>
+                {{ content.body }}
         </li>
         {% endfor %}
 </ul>
