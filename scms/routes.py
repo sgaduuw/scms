@@ -19,7 +19,7 @@ def index():
     # select one random site to insert lorem into
     rnd_site = Site.query.find({'name': random.choice(['test01', 'test02', 'test03'])}).first()
     new_page = Content(
-        title='FirstPage',
+        title=lorem.get_sentence(),
         site_id=rnd_site._id,
         create_date=datetime.now(),
         body=lorem.get_paragraph(
