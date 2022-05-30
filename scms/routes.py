@@ -22,7 +22,7 @@ def index():
         title='FirstPage',
         site_id=rnd_site._id,
         date=datetime.datetime.now(),
-        text=lorem.get_paragraph(
+        body=lorem.get_paragraph(
             count=3,
             comma=(0, 2),
             word_range=(4, 8),
