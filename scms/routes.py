@@ -7,7 +7,7 @@ import lorem
 from flask import render_template, request
 
 from scms import app
-from scms.models import Page, Site, session
+from scms.models import Content, Site, session
 
 
 @app.route('/')
@@ -18,7 +18,7 @@ def index():
 
     # select one random site to insert lorem into
     rnd_site = Site.query.find({'name': random.choice(['test01', 'test02', 'test03'])}).first()
-    new_page = Page(
+    new_page = Content(
         title='FirstPage',
         site_id=rnd_site._id,
         date=datetime.datetime.now(),

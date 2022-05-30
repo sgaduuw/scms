@@ -23,14 +23,14 @@ class Site(MappedClass):
     description = FieldProperty(schema.String)
     copyright = FieldProperty(schema.String)
 
-    page = RelationProperty('Page')
+    content = RelationProperty('Content')
 
 
-class Page(MappedClass):
+class Content(MappedClass):
     """ The model class for a page. """
     class __mongometa__:
         session = session
-        name = 'page'
+        name = 'content'
 
     _id = FieldProperty(schema.ObjectId)
     title = FieldProperty(schema.String)

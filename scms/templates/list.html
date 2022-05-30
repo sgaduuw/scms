@@ -3,10 +3,11 @@
 <h1>Lists</h1>
 <h2>{{ site.name }}</h2>
 <ul>
-        {% for page in site.page %}
+        {% for content in site.content %}
         <li>
-                <b>{{ page.title}}</b><br>
-                {{ page.text }}
+                <b>{{ content.title }}</b><br>
+                <b>{{ content.date }}</b><br>
+                {{ content.text }}
         </li>
         {% endfor %}
 </ul>
