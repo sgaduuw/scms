@@ -36,10 +36,10 @@ class Content(MappedClass):
     title = FieldProperty(schema.String)
     text = FieldProperty(schema.String)
     create_date = FieldProperty(schema.DateTime)
+    publish_date = FieldProperty(schema.DateTime)
 
     body = FieldProperty(schema.String)
     slug = FieldProperty(schema.String)
-    publishdate = FieldProperty(schema.DateTime)
     description = FieldProperty(schema.String)
 
     # TODO
