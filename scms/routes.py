@@ -40,7 +40,6 @@ def list_pages():
     site = Site.query.find({"fqdns": req_host }).first()
 
     if site is not None:
-        print(req_host)
         return render_template('list.html', site=site)
 
     return render_template('error.html', payload=req_host), 404
