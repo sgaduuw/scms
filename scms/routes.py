@@ -4,10 +4,10 @@ import random
 from urllib.parse import urlparse
 
 import lorem
-from flask import render_template, request
+from flask import render_template, request, url_for, redirect, session
 
 from scms import app
-from scms.models import Content, Site, session
+from scms.models import Content, Site, m_session, User, Group, Permission
 
 
 @app.route('/')
@@ -43,3 +43,95 @@ def list_pages():
         return render_template('list.html', site=site)
 
     return render_template('error.html', payload=req_host), 404
+
+@app.route('/SA', methods=['GET', 'POST'], strict_slashes=False)
+def super_admin():
+    """ function for displaying the super admin page """
+    if User.query.find().count() == 0:
+        try:
+            session['sa_logged_in']
+
+        except KeyError:
+            return redirect(url_for('super_admin_login'))
+
+        else:
+            from scms.scms.login_forms import CreateAdminForm
+            form = CreateAdminForm()
+
+            if form.validate_on_submit():
+                new_group = Group.query.find_and_modify(
+                    query={'group_name': 'admins'},
+                    update={'$set': {'group_name': 'admins'}},
+                    upsert=True,
+                    new=True
+                )
+                print(f"New group: {new_group._id}")
+                new_user = User(
+                    first_name=form.new_first_name.data,
+                    last_name=form.new_last_name.data,
+                    username=form.new_username.data,
+                    password=form.new_password.data,
+                    groups=[new_group]
+                )
+                print(new_user)
+                m_session.flush()
+
+                session.pop('sa_logged_in', None)
+                return redirect(url_for('super_admin'))
+
+            return render_template('admin_super.html', form=form)
+
+    return redirect(url_for('index'))
+
+@app.route('/SA/login', methods=['GET', 'POST'], strict_slashes=False)
+def super_admin_login():
+    """ function for displaying the super admin page """
+    if User.query.find().count() == 0:
+        import os
+        from scms.login_forms import SALoginForm
+
+        form = SALoginForm()
+        if os.getenv('SUPERADMIN_PASSWORD') is None:
+            raise Exception('SUPERADMIN_PASSWORD environment variable not set')
+
+        if form.validate_on_submit():
+            if form.password.data == os.getenv('SUPERADMIN_PASSWORD'):
+                session['sa_logged_in'] = True
+                return redirect(url_for('super_admin'))
+
+        return render_template('admin_super_login.html', form=form)
+
+    return render_template('error.html'), 401
+
+
+@app.route('/admin', methods=['GET', 'POST'], strict_slashes=False)
+def normal_admin():
+    """ function for displaying the super admin page """
+    try:
+        session['admin_logged_in']
+
+    except KeyError:
+        return render_template('admin_normal.html', active_admin=False), 401
+
+    else:
+        return render_template('admin_normal.html', active_admin=True)
+
+
+@app.route('/admin/login', methods=['GET', 'POST'], strict_slashes=False)
+def normal_admin_login():
+    """ function for displaying the super admin page """
+    from scms.login_forms import AdminLoginForm
+
+    form = AdminLoginForm()
+
+    if form.validate_on_submit():
+        if form.username.data:
+            user = User.query.find({ 'username': form.username.data }).first()
+            print(f"user: {user}")
+            validate = user.validate_password(form.password.data)
+            print(f"validate: {validate}")
+            if validate:
+                session['admin_logged_in'] = True
+                return redirect(url_for('normal_admin'))
+
+    return render_template('admin_login.html', form=form)

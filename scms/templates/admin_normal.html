@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Admin</h1>
+{% if active_admin %}
+<h2>Welcome</h2>
+{% else %}
+<h2>Not logged in</h2>
+Log in <a href="/admin/login">here</a>.
+{% endif%}
+{% endblock %}

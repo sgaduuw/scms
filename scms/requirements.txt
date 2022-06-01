@@ -1,5 +1,7 @@
 Ming==0.11.2
 Flask==2.1.1
+Flask-WTF==1.0.1
 dnspython==2.2.1
 # remove later
 python-lorem==1.1.2
+
