@@ -7,14 +7,14 @@ from ming import create_datastore, schema
 from ming.odm import (FieldProperty, ForeignIdProperty, MappedClass, Mapper,
                       RelationProperty, ThreadLocalODMSession)
 
-session = ThreadLocalODMSession(
+m_session = ThreadLocalODMSession(
     bind=create_datastore(os.getenv('MONGO_CONNECT'))
 )
 
 class Site(MappedClass):
     """ The model class for a site. """
     class __mongometa__:
-        session = session
+        session = m_session
         name = 'site'
 
     _id = FieldProperty(schema.ObjectId)
@@ -31,7 +31,7 @@ class Site(MappedClass):
 class Content(MappedClass):
     """ The model class for a page. """
     class __mongometa__:
-        session = session
+        session = m_session
         name = 'content'
 
     _id = FieldProperty(schema.ObjectId)

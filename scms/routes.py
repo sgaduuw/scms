@@ -29,7 +29,7 @@ def index():
             sentence_range=(5, 10)
         )
     )
-    session.flush()
+    m_session.flush_all()
     return render_template('index.html', payload=new_page)
 
 @app.route('/list')
