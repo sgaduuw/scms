@@ -106,12 +106,40 @@ def super_admin_login():
 
 @app.route('/admin', methods=['GET', 'POST'], strict_slashes=False)
 def normal_admin():
+    """ function for displaying the normal admin page """
+    try:
+        session['admin_logged_in']
+
+    except KeyError:
+        return render_template('admin_normal_index.html', active_admin=False), 401
+
+    else:
+        return render_template('admin_normal_index.html', active_admin=True)
+
+
+@app.route('/admin/sites', strict_slashes=False)
+def normal_admin_sites():
+    """ list sites """
+    try:
+        session['admin_logged_in']
+
+    except KeyError:
+        return render_template('admin_normal_list_sites.html', active_admin=False), 401
+
+    else:
+        sites = Site.query.find()
+
+        return render_template('admin_normal_list_sites.html', active_admin=True, sites=sites)
+
+
+@app.route('/admin/site/<string:site_name>', methods=['GET', 'POST'], strict_slashes=False)
+def normal_admin_single_site(site_name):
     """ function for displaying the super admin page """
     try:
         session['admin_logged_in']
 
     except KeyError:
-        return render_template('admin_normal.html', active_admin=False), 401
+        return render_template('admin_normal_single_site.html', active_admin=False), 401
 
     else:
         return render_template('admin_normal.html', active_admin=True)
