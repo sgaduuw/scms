@@ -16,9 +16,10 @@ class Site(MappedClass):
     class __mongometa__:
         session = m_session
         name = 'site'
+        unique_indexes = [('name',),]
 
     _id = FieldProperty(schema.ObjectId)
-    name = FieldProperty(schema.String)
+    name = FieldProperty(schema.String, unique=True)
     fqdns = FieldProperty(schema.Array(str))
     title = FieldProperty(schema.String)
     tagline = FieldProperty(schema.String)
