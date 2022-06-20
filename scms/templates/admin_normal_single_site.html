@@ -1,0 +1,43 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<h1>Admin</h1>
+{% if active_admin %}
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>{% if site.title %}{{ site.title }}{% else %}New site{% endif %}</legend>
+        <div class="form-group">
+            {{ form.name.label }}
+            <td>{{ form.name(size=32) }}</td>
+        </div>
+        <div class="form-group">
+            {{ form.title.label }}
+            {{ form.title(size=32) }}
+        </div>
+        <div class="form-group">
+            {{ form.tagline.label }}
+            {{ form.tagline(size=32) }}
+        </div>
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            {{ form.fqdns.label }}
+            {{ form.fqdns }}
+        </div>
+        <div class="form-group">
+            {{ form.copyright.label }}
+            {{ form.copyright }}
+        </div>
+        <div class="form-group">
+            {{ form.submit() }}
+        </div>
+    </fieldset>
+</form>
+{% else %}
+<h2>Not logged in</h2>
+Log in <a href="/admin/login">here</a>.
+{% endif%}
+{% endblock %}
