@@ -30,7 +30,7 @@ def index():
         )
     )
     m_session.flush_all()
-    return render_template('index.html', payload=new_page)
+    return render_template('index.html', payload=new_page, site=rnd_site)
 
 @app.route('/list')
 def list_pages():
