@@ -1,0 +1,34 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<h1>Admin</h1>
+{% if active_admin %}
+<h2>List of sites</h2>
+
+<table>
+    <caption>
+        List of sites
+    </caption>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for site in sites %}
+        <tr>
+            <th><a href="/admin/site/{{ site.name }}">{{ site.name }}</a></th>
+            <td>{{ site.title }}</td>
+            <td>{{ site.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/admin/site/new">New site</a>
+{% else %}
+<h2>Not logged in</h2>
+Log in <a href="/admin/login">here</a>.
+{% endif%}
+{% endblock %}
