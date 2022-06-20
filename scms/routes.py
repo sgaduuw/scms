@@ -85,7 +85,7 @@ def super_admin():
 
 @app.route('/SA/login', methods=['GET', 'POST'], strict_slashes=False)
 def super_admin_login():
-    """ function for displaying the super admin page """
+    """ function for logging in to the superadmin page """
     if User.query.find().count() == 0:
         import os
         from scms.login_forms import SALoginForm
@@ -119,7 +119,7 @@ def normal_admin():
 
 @app.route('/admin/login', methods=['GET', 'POST'], strict_slashes=False)
 def normal_admin_login():
-    """ function for displaying the super admin page """
+    """ function for logging in to the normal admin page """
     from scms.login_forms import AdminLoginForm
 
     form = AdminLoginForm()
