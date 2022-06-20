@@ -1,13 +1,13 @@
 """ routes for scms app """
-from datetime import datetime
 import random
+from datetime import datetime
 from urllib.parse import urlparse
 
 import lorem
-from flask import render_template, request, url_for, redirect, session
+from flask import redirect, render_template, request, session, url_for
 
 from scms import app
-from scms.models import Content, Site, m_session, User, Group, Permission
+from scms.models import Content, Group, Permission, Site, User, m_session
 
 
 @app.route('/')
