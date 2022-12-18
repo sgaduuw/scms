@@ -1,0 +1,10 @@
+environs==9.5.0
+Flask==2.2.2
+Flask-Bcrypt==1.0.1
+Flask-Caching==2.0.1
+Flask-DebugToolbar==0.13.1
+Flask-Login==0.6.2
+flask-mongoengine==1.0.0
+Flask-Static-Digest==0.2.1
+Flask-WTF==1.0.1
+mongoengine==0.24.2
