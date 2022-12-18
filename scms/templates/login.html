@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}This is an example login{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+  <h1>Hello, login page</h1>
+  <p>This is the login page.</p>
+  <form action="/login/" method="post">
+    {{ form.csrf_token }}
+    {{ form.user_name.label }} {{ form.user_name }}<br/>
+    {{ form.pass_word.label }} {{ form.pass_word }}<br/>
+    <input type="submit" value="Go">
+  </form>
+  <h2>Request</h2>
+  <p>{{ request }}</p>
+{% endblock %}

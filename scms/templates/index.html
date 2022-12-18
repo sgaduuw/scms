@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}This is an example page{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+  <h1>Hello, front page</h1>
+  <p>This is the front page.</p>
+  <h2>Request</h2>
+  <p>{{ request }}</p>
+{% endblock %}
