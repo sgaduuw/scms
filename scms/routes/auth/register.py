@@ -30,4 +30,4 @@ def register():
         'form': form
     }
 
-    return render_template('register.html', **context)
+    return render_template('register.j2', **context)
