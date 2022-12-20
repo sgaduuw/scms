@@ -2,7 +2,7 @@ from flask import render_template
 from flask_login import login_required
 
 from scms.extensions import login_manager
-from scms.models.auth import User
+from scms.models import User
 from scms.routes.admin import admin
 
 

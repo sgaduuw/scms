@@ -4,7 +4,7 @@ from flask import (
 )
 
 from scms.routes.auth import auth, forms
-from scms.models.auth import User
+from scms.models import User
 
 
 @auth.route('/register/', methods=["GET", "POST"])
