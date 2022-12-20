@@ -8,7 +8,7 @@ from flask_login import login_user
 
 from scms.extensions import login_manager
 from scms.routes.auth import auth, forms
-from scms.models.auth import User
+from scms.models import User
 
 
 @login_manager.user_loader

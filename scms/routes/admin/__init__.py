@@ -1,7 +1,7 @@
 from flask import Blueprint
 from scms.extensions import login_manager
 
-from scms.models.auth import User
+from scms.models import User
 
 admin = Blueprint(
     'admin',
