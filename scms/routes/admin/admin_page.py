@@ -17,4 +17,4 @@ def load_user(user_id):
 def admin_page():
 
     # return f"Front page for {request.headers['Host']}"
-    return render_template('admin.html')
+    return render_template('admin.j2', **context)
