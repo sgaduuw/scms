@@ -6,4 +6,4 @@ from scms.routes.public import public
 @public.route('/')
 def index():
 
-    return render_template('index.html')
+    return render_template('index.j2')

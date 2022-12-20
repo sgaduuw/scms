@@ -26,3 +26,6 @@ class User(UserMixin, db.Document):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def __str__(self):
+        return f"User: {self.first_name} {self.last_name} ({self.user_name})"

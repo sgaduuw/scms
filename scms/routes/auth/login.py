@@ -43,4 +43,4 @@ def login():
         'form': form
     }
 
-    return render_template('login.html', **context)
+    return render_template('login.j2', **context)

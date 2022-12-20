@@ -1,0 +1,44 @@
+{% extends "base.j2" %}
+
+{% block title %}This is the admin page{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
+<h1>Hello, admin</h1>
+<p>This is the admin page.</p>
+<h2>User</h2>
+<p>{{ current_user }}</p>
+<hr>
+<h2>Sites</h2>
+<ul>
+  {% for site in sites %}
+  <li>{{ site }}</li>
+  {% endfor %}
+</ul>
+<h2>Content</h2>
+<ul>
+  {% for page in content %}
+  <li>{{ page }}</li>
+  {% endfor %}
+</ul>
+<h2>Tags</h2>
+<ul>
+  {% for tag in tags %}
+  <li>{{ tag }}</li>
+  {% endfor %}
+</ul>
+<h2>Categories</h2>
+<ul>
+  {% for category in categories %}
+  <li>{{ category }}</li>
+  {% endfor %}
+</ul>
+<hr>
+<h2>Request</h2>
+<p>{{ request }}</p>
+{% endblock %}
