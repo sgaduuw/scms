@@ -3,18 +3,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from scms.extensions import db
-
-
-class Permission(db.Document):
-
-    permission_name = db.StringField()
-    description = db.StringField()
-
-
-class Group(db.Document):
-
-    group_name = db.StringField()
-    permissions = db.ListField(db.ReferenceField(Permission))
+from scms.models import Group
 
 
 class User(UserMixin, db.Document):
