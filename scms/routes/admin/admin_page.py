@@ -5,6 +5,8 @@ from scms.extensions import login_manager
 from scms.models import User, Site, Content, Tag, Category
 from scms.routes.admin import admin
 
+import lorem
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -15,6 +17,11 @@ def load_user(user_id):
 @admin.route('/admin/')
 @login_required
 def admin_page():
+    mock_content = {
+        'title': lorem.get_word(count=5),
+        'body': lorem.get_paragraph(count=7)
+    }
+    Content(**mock_content).save()
 
     context = {
         'sites': Site.objects,
