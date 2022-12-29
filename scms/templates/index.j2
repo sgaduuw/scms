@@ -2,15 +2,16 @@
 
 {% block title %}This is an example page{% endblock %}
 
-{% block navbar %}
-<div class="navbar navbar-fixed-top">
-  <!-- ... -->
+{% block featured %}
+<div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
+  {% include "includes/bigfeatured.j2" %}
 </div>
-{% endblock %}
+
+<div class="row mb-2">
+  {% include "includes/smallfeatured.j2" %}
+</div>
+{% endblock featured %}
 
 {% block content %}
-  <h1>Hello, front page</h1>
-  <p>This is the front page.</p>
-  <h2>Request</h2>
-  <p>{{ request }}</p>
-{% endblock %}
+{% include "includes/list_content.j2" %}
+{% endblock content %}
