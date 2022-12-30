@@ -11,6 +11,6 @@ class Content(db.Document):
     publish_date = db.DateTimeField(default=datetime.utcnow)
     slug = db.StringField()
     description = db.StringField()
-    site = db.ReferenceField(Site)
+    site = db.ReferenceField(Site, required=True)
     tags = db.ListField(db.ReferenceField(Tag))
     categories = db.ListField(db.ReferenceField(Category))
