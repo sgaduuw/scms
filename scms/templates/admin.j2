@@ -1,4 +1,4 @@
-{% extends "base.j2" %}
+{% extends "base_admin.j2" %}
 
 {% block title %}This is the admin page{% endblock %}
 
@@ -8,24 +8,36 @@
 <h2>User</h2>
 <p>{{ current_user }}</p>
 <hr>
+
 <h2>Sites</h2>
+{% if sites | length > 0 %}
 <ul>
   {% for site in sites %}
-  <li>{{ site }}</li>
+  <li>{{ site.id }}: {{ site.name }} {{ site.title }} {{ site.fqdns }}</li>
   {% endfor %}
 </ul>
+{% else %}
+No sites defined.
+{% endif %}
+
 <h2>Content</h2>
+{% if content | length > 1 %}
 <ul>
   {% for page in content %}
-  <li>{{ page }}</li>
+  <li>{{ page.site.name }}: {{ page.title }}</li>
   {% endfor %}
 </ul>
+{% else %}
+No content.
+{% endif %}
+
 <h2>Tags</h2>
 <ul>
   {% for tag in tags %}
   <li>{{ tag }}</li>
   {% endfor %}
 </ul>
+
 <h2>Categories</h2>
 <ul>
   {% for category in categories %}
