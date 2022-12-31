@@ -1,7 +1,7 @@
 {% for content in list_content %}
 <article class="blog-post">
     <h2 class="blog-post-title mb-1">{{ content.title }}</h2>
-    <p class="blog-post-meta">{{ content.publish_date }}<a href="#">Mark</a></p>
+    <p class="blog-post-meta">{{ content.publish_date }} by <a href="{{ url_for('public.index') }}">{{ content.author.first_name }}</a></p>
     <p>{{ content.body }}</p>
 </article>
 {% endfor %}
