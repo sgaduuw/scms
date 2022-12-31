@@ -43,4 +43,4 @@ def index():
         'posts': Content.objects
     }
     # return f"Front page for {request.headers['Host']}"
-    return render_template('admin.j2', **context)
+    return render_template('admin_index.j2', **context)
