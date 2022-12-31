@@ -14,7 +14,7 @@ def load_user(user_id):
 
 @admin.route('/admin/sites/')
 @login_required
-def admin_sites():
+def sites():
 
     context = {
         'sites': Site.objects

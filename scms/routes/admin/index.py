@@ -17,7 +17,7 @@ def load_user(user_id):
 
 @admin.route('/admin/')
 @login_required
-def admin_page():
+def index():
     site_names = ['Local Eelco', 'Eelco02', 'Eelco03']
     author_names = ['aa', 'bb', 'cc']
 
