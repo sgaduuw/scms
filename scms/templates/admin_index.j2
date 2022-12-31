@@ -24,12 +24,19 @@ No sites defined.
 {% if content | length > 1 %}
 <ul>
   {% for page in content %}
-  <li>{{ page.site.name }}: {{ page.title }}</li>
+  <li>{{ page.site.name }}: <em>{{ page.title }}</em> by <b>{{ page.author.first_name }}</b></li>
   {% endfor %}
 </ul>
 {% else %}
 No content.
 {% endif %}
+
+<h2>Authors</h2>
+<ul>
+  {% for author in authors %}
+  <li>{{ author.first_name }} {{ author.last_name }}</li>
+  {% endfor %}
+</ul>
 
 <h2>Tags</h2>
 <ul>
