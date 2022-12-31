@@ -15,3 +15,4 @@ def load_user(user_id):
     return User.objects(pk=user_id).first()
 
 from scms.routes.admin import admin_page # noqa
+from scms.routes.admin import sites # noqa
