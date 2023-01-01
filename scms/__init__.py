@@ -1,10 +1,10 @@
 from flask import Flask
+# from flask_admin.contrib.mongoengine import ModelView
 
 from scms.config import Config
 from scms.routes.public import public
 from scms.routes.auth import auth
 from scms.routes.admin import admin
-
 
 from scms.extensions import (
     bcrypt,
@@ -27,6 +27,7 @@ def create_app():
 
 def register_extensions(app):
     """Register Flask extensions."""
+    admin.init_app(app)
     bcrypt.init_app(app)
     cache.init_app(app)
     db.init_app(app)
@@ -41,7 +42,6 @@ def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public)
     app.register_blueprint(auth)
-    app.register_blueprint(admin)
     return None
 
 
