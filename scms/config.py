@@ -4,6 +4,10 @@ env = Env()
 env.read_env()
 
 
+class FlaskAdmin:
+    FLASK_ADMIN_SWATCH = env.str('FLASK_ADMIN_SWATCH')
+
+
 class MongoSettings:
     MONGODB_DB = env.str('MONGODB_DB')
     MONGODB_HOST = env.str('MONGODB_HOST')
@@ -22,7 +26,7 @@ class CacheSettings:
     CACHE_DEFAULT_TIMEOUT = env.int("CACHE_DEFAULT_TIMEOUT")
 
 
-class Config(CacheSettings, DTBSettings, MongoSettings):
+class Config(CacheSettings, DTBSettings, MongoSettings, FlaskAdmin):
     FLASK_DEBUG = env.bool("FLASK_DEBUG")
     DEBUG = env.bool("FLASK_DEBUG")
     SECRET_KEY = env.str("SECRET_KEY")
