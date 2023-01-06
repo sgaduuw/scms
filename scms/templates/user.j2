@@ -1,0 +1,13 @@
+{% extends "base_user.j2" %}
+
+{% block title %}This is the user page{% endblock %}
+
+{% block content %}
+<h1>Hello, {{ user.first_name }}</h1>
+<p>This is the user page.</p>
+<h2>User</h2>
+<p>{{ current_user }}</p>
+<hr>
+<h2>Request</h2>
+<p>{{ request }}</p>
+{% endblock %}
