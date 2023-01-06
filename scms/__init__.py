@@ -5,6 +5,7 @@ from scms.config import Config
 from scms.routes.public import public
 from scms.routes.auth import auth
 from scms.routes.admin import admin
+from scms.routes.loggedin import loggedin
 
 from scms.extensions import (
     bcrypt,
@@ -42,6 +43,7 @@ def register_extensions(app):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public)
+    app.register_blueprint(loggedin)
     app.register_blueprint(auth)
     return None
 
