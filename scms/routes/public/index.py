@@ -1,5 +1,6 @@
 from flask import render_template, request
 
+from scms.helpers import Header
 from scms.models import Content, Site
 from scms.routes.public import public
 
@@ -14,6 +15,7 @@ def index():
     list_content = Content.objects(site=site)
 
     context = {
+        'header': Header(),
         'site': site,
         'list_content': list_content
     }
