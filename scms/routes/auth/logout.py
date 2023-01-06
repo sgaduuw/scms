@@ -20,4 +20,4 @@ def load_user(user_id):
 def logout():
     logout_user()
 
-    return redirect(url_for("public.j2"))
+    return redirect(url_for('public.index'))
