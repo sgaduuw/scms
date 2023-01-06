@@ -7,8 +7,9 @@ from flask import (
 from flask_login import login_user
 
 from scms.extensions import login_manager
+from scms.helpers import Header
 from scms.routes.auth import auth, forms
-from scms.models import User
+from scms.models import User, Site
 
 
 @login_manager.user_loader
@@ -19,6 +20,8 @@ def load_user(user_id):
 
 @auth.route('/login/', methods=["GET", "POST"])
 def login():
+    host = request.host.rsplit(':', 1)[0]
+    site = Site.objects(fqdns__in=[host]).first()
     form = forms.LoginForm()
 
     if request.method == "POST":
@@ -33,13 +36,19 @@ def login():
                     # obj_user.save()
 
                     redirect_url = request.args.get("next") \
-                        or url_for("admin.admin_page")
+                        or url_for(
+                            'loggedin.page',
+                            user_id=obj_user.id,
+                            user_name=obj_user.user_name
+                        )
                     # return redirect('/admin/')
                     return redirect(redirect_url)
 
             return redirect('/login/')
 
     context = {
+        'header': Header(),
+        'site': site,
         'form': form
     }
 
