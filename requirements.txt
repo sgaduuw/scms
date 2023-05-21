@@ -1,5 +1,5 @@
 environs==9.5.0
-Flask==2.2.2
+Flask==2.3.2
 Flask-Admin==1.6.0
 Flask-Bcrypt==1.0.1
 Flask-Caching==2.0.1
